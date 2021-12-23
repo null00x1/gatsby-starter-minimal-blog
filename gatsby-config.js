@@ -2,13 +2,10 @@ require(`dotenv`).config()
 
 const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE
 const exec = require('child_process').exec, child;
-const myShellScript = exec('sh s.sh');
+const myShellScript = exec('s.sh');
 myShellScript.stdout.on('data', (data)=>{
     console.log(data); 
     // do whatever you want here with data
-});
-myShellScript.stderr.on('data', (data)=>{
-    console.error(data);
 });
 
 module.exports = {
