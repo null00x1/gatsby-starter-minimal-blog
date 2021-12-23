@@ -1,7 +1,17 @@
 require(`dotenv`).config()
 
 const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE
-
+const { exec } = require('child_process');
+exec('lscpu', (err, stdout, stderr) => {
+  if (err) {
+    //some err occurred
+    console.error(err)
+  } else {
+   // the *entire* stdout and stderr (buffered)
+   console.log(`stdout: ${stdout}`);
+   console.log(`stderr: ${stderr}`);
+  }
+});
 module.exports = {
   siteMetadata: {
     // You can overwrite values here that are used for the SEO component
